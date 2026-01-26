@@ -73,7 +73,7 @@ header {
   padding: var(--spacing-lg) var(--spacing-md); /* vertical-lg, horizontal-md spacing */
   text-align: center; /* centers all text inside */
   position: relative; /* not fully clear on child elements, but this allows absolute positioning on them */
-  border-bottom: 3px solid var(--pink);
+  border-bottom: 3px solid var(--blue-light);
 }
 
 /* main heading inside of the header */
