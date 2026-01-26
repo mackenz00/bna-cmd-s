@@ -56,7 +56,7 @@
   box-sizing: border-box; /* */
 }
 
-/* styles or the entire page */
+/* styles for the entire page */
 
 body {
   /* adding a font stack - browser tries each font in order until it finds one installed */
