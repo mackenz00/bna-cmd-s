@@ -1,36 +1,35 @@
 /* styles.css */
 
-/* ==================== */
 /* VARIABLES & RESET */
-/* ==================== */
+/* defining reusable variables var(--variable-name) to use anywhere */
 
 :root {
-  /* Your color palette from Coolors */
-  --charcoal: #403f4c;
-  --red: #e84855;
-  --yellow: #f9dc5c;
-  --blue: #3185fc;
-  --pink: #efbcd5;
+  /* my color palette from Coolors */
+  --charcoal: #403f4c; /* text */
+  --red: #e84855; /* alerts/emphasis */
+  --yellow: #f9dc5c; /* highlights */
+  --blue: #3185fc; /* interactive elements */
+  --pink: #efbcd5; /* accent cards */
   
-  /* Derived colors for backgrounds (lighter versions) */
+  /* lighter versions for backgrounds */
   --charcoal-light: #5a5968;
   --red-light: #ffebec;
   --yellow-light: #fffbef;
   --blue-light: #e8f4ff;
   --pink-light: #fdf5f9;
   
-  /* Main colors */
+  /* semantic color names for readability */
   --header-bg: var(--blue-light);
   --main-bg: #fafafa;
   --white: #ffffff;
   --text-dark: var(--charcoal);
   --text-light: #666;
   
-  /* Button colors */
+  /* button colors */
   --primary-blue: var(--blue);
   --secondary-blue: #5ba3fc;
   
-  /* Story angle card colors - using your palette */
+  /* story angle card colors */
   --green-bg: var(--yellow-light);
   --green-border: var(--yellow);
   --orange-bg: var(--red-light);
@@ -42,47 +41,53 @@
   --pink-bg: var(--pink-light);
   --pink-border: var(--pink);
   
-  /* Spacing */
-  --spacing-sm: 1rem;
+  /* spacing variables for consistent spacing throughout */
+  --spacing-sm: 1rem; /* 1rem = root fond size) */
   --spacing-md: 2rem;
   --spacing-lg: 3rem;
 }
 
+/* universal selector, applies to everything on page */
+/* CSS reset to ensure consistent design across browsers */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; /* */
 }
 
+/* styles or the entire page */
+
 body {
+  /* adding a font stack - browser tries each font in order until it finds one installed */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
   background-color: var(--main-bg);
   color: var(--text-dark);
   line-height: 1.6;
 }
 
-/* ==================== */
 /* HEADER */
-/* ==================== */
 
 header {
   background-color: var(--header-bg);
-  padding: var(--spacing-lg) var(--spacing-md);
-  text-align: center;
-  position: relative;
+  padding: var(--spacing-lg) var(--spacing-md); /* vertical-lg, horizontal-md spacing */
+  text-align: center; /* centers all text inside */
+  position: relative; /* not fully clear on child elements, but this allows absolute positioning on them */
   border-bottom: 3px solid var(--blue);
 }
 
+/* main heading inside of the header */
 header h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: var(--text-dark);
 }
 
+/* graf inside of the header */
 header p {
   font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 700px; /* improving readability by preventing it from getting too wide */
+  margin: 0 auto; /* 0 top/bottom, auto left/right (horizontal centering) */
   color: var(--charcoal-light);
 }
 
@@ -93,10 +98,10 @@ header p {
 #upload-section {
   background-color: var(--white);
   max-width: 600px;
-  margin: var(--spacing-lg) auto;
+  margin: var(--spacing-lg) auto; /* horizontal centering w/ auto margins */
   padding: var(--spacing-lg);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1);
+  border-radius: 8px; /* rounded corners */
+  box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1); /* todo: look up boxcode generators */
 }
 
 .upload-container h2 {
