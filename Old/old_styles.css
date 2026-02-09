@@ -66,14 +66,6 @@ body {
   line-height: 1.6;
 }
 
-/* ==================== */
-/* SCREEN MANAGEMENT */
-/* ==================== */
-
-.screen {
-  min-height: 400px;
-}
-
 /* HEADER */
 
 header {
@@ -103,18 +95,19 @@ header p {
 /* UPLOAD SECTION */
 /* ==================== */
 
-#landing-screen {
+#upload-section {
   background-color: var(--white);
   max-width: 600px;
   margin: var(--spacing-lg) auto; /* horizontal centering w/ auto margins */
   padding: var(--spacing-lg);
   border-radius: 8px; /* rounded corners */
-  box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1);
+  box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1); /* todo: look up boxcode generators */
 }
 
 .upload-container h2 {
   text-align: center;
   margin-bottom: var(--spacing-md);
+  display: none;
 }
 
 /* Hide the actual file input */
@@ -141,13 +134,6 @@ input[type="file"] {
   background-color: #d9eeff;
   border-color: var(--secondary-blue);
   transform: translateY(-2px);
-}
-
-/* Drag-over state */
-#upload-area.drag-over {
-  background-color: #d9eeff;
-  border-color: var(--secondary-blue);
-  transform: scale(1.02);
 }
 
 /* Add the cloud icon */
@@ -198,7 +184,7 @@ input[type="file"] {
 /* LOADING SECTION */
 /* ==================== */
 
-#loading-screen {
+#loading-section {
   max-width: 600px;
   margin: var(--spacing-lg) auto;
   padding: var(--spacing-lg);
@@ -215,10 +201,10 @@ input[type="file"] {
 
 .loading-container p {
   color: var(--text-light);
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
-/* Loading bar */
+/* Loading bar with your color palette */
 .spinner {
   width: 100%;
   height: 8px;
@@ -226,22 +212,29 @@ input[type="file"] {
   border-radius: 4px;
   overflow: hidden;
   position: relative;
-  margin-top: var(--spacing-md);
 }
 
-.progress-fill {
+.spinner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
+  width: 30%;
   background: linear-gradient(90deg, var(--blue), var(--pink));
-  width: 0%;
-  transition: width 1.5s ease-in-out;
-  border-radius: 4px;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { left: -30%; }
+  100% { left: 100%; }
 }
 
 /* ==================== */
 /* ERROR SECTION */
 /* ==================== */
 
-#error-screen {
+#error-section {
   max-width: 700px;
   margin: var(--spacing-lg) auto;
   padding: var(--spacing-lg);
@@ -253,15 +246,6 @@ input[type="file"] {
 .error-container h2 {
   color: var(--red);
   margin-bottom: var(--spacing-md);
-}
-
-.error-details {
-  margin-bottom: var(--spacing-md);
-}
-
-.error-details p {
-  margin-bottom: 1rem;
-  color: var(--text-dark);
 }
 
 .error-container h3 {
@@ -304,282 +288,4 @@ input[type="file"] {
   box-shadow: 0 4px 12px rgba(49, 133, 252, 0.3);
 }
 
-/* ==================== */
-/* VISUALIZATIONS SECTION */
-/* ==================== */
-
-#visualizations-screen {
-  max-width: 1200px;
-  margin: var(--spacing-lg) auto;
-  padding: var(--spacing-md);
-}
-
-.usage-info {
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-}
-
-.usage-info h2 {
-  margin-bottom: 1rem;
-  color: var(--text-dark);
-}
-
-.usage-info p {
-  color: var(--text-light);
-}
-
-.visualizations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-}
-
-.viz-card {
-  background-color: var(--white);
-  padding: var(--spacing-md);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.viz-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(64, 63, 76, 0.15);
-}
-
-.viz-card h3 {
-  margin-bottom: var(--spacing-md);
-  color: var(--text-dark);
-  font-size: 1.3rem;
-}
-
-/* Chart containers */
-#dog-names-chart,
-#cat-names-chart,
-#dog-breeds-chart,
-#cats-dogs-chart {
-  min-height: 300px;
-  margin: var(--spacing-md) 0;
-}
-
-/* Download buttons */
-.download-button {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: var(--blue);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-}
-
-.download-button:hover {
-  background-color: var(--secondary-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(49, 133, 252, 0.3);
-}
-
-/* ==================== */
-/* STORY IDEAS SECTION */
-/* ==================== */
-
-#story-ideas-section {
-  max-width: 1200px;
-  margin: var(--spacing-lg) auto;
-  padding: var(--spacing-md);
-  text-align: center;
-}
-
-#story-ideas-section h2 {
-  margin-bottom: 1rem;
-  color: var(--text-dark);
-}
-
-.story-intro {
-  color: var(--text-light);
-  margin-bottom: var(--spacing-lg);
-}
-
-#story-ideas-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-md);
-}
-
-/* Story cards */
-.story-card {
-  display: flex;
-  align-items: flex-start;
-  padding: var(--spacing-md);
-  border-radius: 8px;
-  border-left: 5px solid;
-  background-color: var(--white);
-  box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1);
-  text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.story-card:hover {
-  transform: translateX(4px);
-  box-shadow: 0 4px 16px rgba(64, 63, 76, 0.15);
-}
-
-/* Color variants for different story types */
-.story-green { 
-  border-left-color: var(--green-border);
-  background-color: var(--green-bg);
-}
-
-.story-orange { 
-  border-left-color: var(--orange-border);
-  background-color: var(--orange-bg);
-}
-
-.story-blue { 
-  border-left-color: var(--blue-border);
-  background-color: var(--blue-bg);
-}
-
-.story-purple { 
-  border-left-color: var(--purple-border);
-  background-color: var(--purple-bg);
-}
-
-.story-pink { 
-  border-left-color: var(--pink-border);
-  background-color: var(--pink-bg);
-}
-
-.story-icon {
-  font-size: 2.5rem;
-  margin-right: var(--spacing-md);
-  flex-shrink: 0;
-}
-
-.story-content {
-  flex: 1;
-}
-
-.story-type {
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: var(--charcoal-light);
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.5px;
-}
-
-.story-headline {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin: 0.5rem 0 0.75rem 0;
-  color: var(--text-dark);
-  line-height: 1.4;
-}
-
-.story-detail {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.copy-button {
-  background-color: var(--blue);
-  color: white;
-  border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-left: var(--spacing-md);
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  align-self: center;
-}
-
-.copy-button:hover {
-  background-color: var(--secondary-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(49, 133, 252, 0.3);
-}
-
-.copy-button.copied {
-  background-color: var(--yellow);
-  color: var(--text-dark);
-}
-
-/* ==================== */
-/* FOOTER */
-/* ==================== */
-
-footer {
-  background-color: var(--charcoal);
-  color: var(--white);
-  text-align: center;
-  padding: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-}
-
-footer p {
-  margin: 0;
-}
-
-footer a {
-  color: var(--yellow);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-footer a:hover {
-  color: var(--pink);
-  text-decoration: underline;
-}
-
-/* ==================== */
-/* RESPONSIVE DESIGN */
-/* ==================== */
-
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
-  
-  header p {
-    font-size: 1rem;
-  }
-  
-  .visualizations-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .story-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .story-icon {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
-  
-  .copy-button {
-    margin-left: 0;
-    margin-top: 1rem;
-    width: 100%;
-  }
-  
-  #landing-screen,
-  #loading-screen,
-  #error-screen {
-    margin: var(--spacing-md);
-  }
-}
+/*
