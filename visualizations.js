@@ -22,8 +22,15 @@ function generateTopDogNames(data) {
     
     const spec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        title: {
+            text: 'Top 10 Dog Names',
+            fontSize: 16,
+            font: 'sans-serif',
+            anchor: 'start'
+        },
         width: 400,
-        height: 300,
+        height: 350,
+        padding: { top: 20, bottom: 60, left: 10, right: 10 },
         data: {
             values: topNames
         },
@@ -36,12 +43,20 @@ function generateTopDogNames(data) {
                 field: 'name',
                 type: 'nominal',
                 sort: '-x',
-                axis: { title: null }
+                axis: { 
+                    title: 'Dog Name',
+                    labelFontSize: 11,
+                    titleFontSize: 12
+                }
             },
             x: {
                 field: 'count',
                 type: 'quantitative',
-                axis: { title: 'Number of Dogs' }
+                axis: { 
+                    title: 'Number of Dogs',
+                    labelFontSize: 11,
+                    titleFontSize: 12
+                }
             },
             tooltip: [
                 { field: 'name', type: 'nominal', title: 'Name' },
@@ -63,8 +78,15 @@ function generateTopCatNames(data) {
     
     const spec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        title: {
+            text: 'Top 10 Cat Names',
+            fontSize: 16,
+            font: 'sans-serif',
+            anchor: 'start'
+        },
         width: 400,
-        height: 300,
+        height: 350,
+        padding: { top: 20, bottom: 60, left: 10, right: 10 },
         data: {
             values: topNames
         },
@@ -77,12 +99,20 @@ function generateTopCatNames(data) {
                 field: 'name',
                 type: 'nominal',
                 sort: '-x',
-                axis: { title: null }
+                axis: { 
+                    title: 'Cat Name',
+                    labelFontSize: 11,
+                    titleFontSize: 12
+                }
             },
             x: {
                 field: 'count',
                 type: 'quantitative',
-                axis: { title: 'Number of Cats' }
+                axis: { 
+                    title: 'Number of Cats',
+                    labelFontSize: 11,
+                    titleFontSize: 12
+                }
             },
             tooltip: [
                 { field: 'name', type: 'nominal', title: 'Name' },
@@ -104,8 +134,15 @@ function generateTopDogBreeds(data) {
     
     const spec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        title: {
+            text: 'Top 10 Dog Breeds',
+            fontSize: 16,
+            font: 'sans-serif',
+            anchor: 'start'
+        },
         width: 400,
-        height: 300,
+        height: 350,
+        padding: { top: 20, bottom: 60, left: 10, right: 10 },
         data: {
             values: topBreeds
         },
@@ -118,12 +155,20 @@ function generateTopDogBreeds(data) {
                 field: 'name',
                 type: 'nominal',
                 sort: '-x',
-                axis: { title: null }
+                axis: { 
+                    title: 'Breed',
+                    labelFontSize: 11,
+                    titleFontSize: 12
+                }
             },
             x: {
                 field: 'count',
                 type: 'quantitative',
-                axis: { title: 'Number of Dogs' }
+                axis: { 
+                    title: 'Number of Dogs',
+                    labelFontSize: 11,
+                    titleFontSize: 12
+                }
             },
             tooltip: [
                 { field: 'name', type: 'nominal', title: 'Breed' },
@@ -150,8 +195,15 @@ function generateCatsVsDogs(data) {
     
     const spec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-        width: 300,
-        height: 300,
+        title: {
+            text: 'Cats vs Dogs',
+            fontSize: 16,
+            font: 'sans-serif',
+            anchor: 'start'
+        },
+        width: 350,
+        height: 350,
+        padding: { top: 20, bottom: 60, left: 10, right: 10 },
         data: {
             values: chartData
         },
@@ -172,7 +224,11 @@ function generateCatsVsDogs(data) {
                     domain: ['Dogs', 'Cats'],
                     range: ['#3185fc', '#e84855']
                 },
-                legend: { title: null }
+                legend: { 
+                    title: 'Species',
+                    titleFontSize: 12,
+                    labelFontSize: 11
+                }
             },
             tooltip: [
                 { field: 'category', type: 'nominal', title: 'Species' },
@@ -217,10 +273,15 @@ function setupDownloadButton(buttonId, view, filename) {
                 const width = parseFloat(svgElement.getAttribute('width') || 500);
                 const height = parseFloat(svgElement.getAttribute('height') || 400);
                 
+                // Increase SVG height to make room for attribution
+                const newHeight = height + 30;
+                svgElement.setAttribute('height', newHeight);
+                svgElement.setAttribute('viewBox', `0 0 ${width} ${newHeight}`);
+                
                 // Create attribution text element
                 const attribution = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'text');
                 attribution.setAttribute('x', width / 2);
-                attribution.setAttribute('y', height - 10);
+                attribution.setAttribute('y', height + 20); // Position below the chart
                 attribution.setAttribute('text-anchor', 'middle');
                 attribution.setAttribute('font-family', 'sans-serif');
                 attribution.setAttribute('font-size', '11');
