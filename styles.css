@@ -392,6 +392,40 @@ input[type="file"] {
   box-shadow: 0 4px 12px rgba(49, 133, 252, 0.3);
 }
 
+/* Attribution section */
+.attribution-section {
+  margin-top: auto;
+  padding-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.attribution-section label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.source-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.source-input:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.source-input::placeholder {
+  color: #999;
+}
+
 /* ==================== */
 /* STORY IDEAS SECTION */
 /* ==================== */

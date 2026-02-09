@@ -170,7 +170,7 @@ function generateCatsVsDogs(data) {
                 type: 'nominal',
                 scale: {
                     domain: ['Dogs', 'Cats'],
-                    range: ['#5B9BD5', '#E06666']
+                    range: ['#3185fc', '#e84855']
                 },
                 legend: { title: null }
             },
@@ -201,10 +201,44 @@ function setupDownloadButton(buttonId, view, filename) {
     if (!button) return;
     
     button.addEventListener('click', function() {
+        // Get the corresponding source input
+        const sourceInputId = buttonId.replace('-download', '-source');
+        const sourceInput = document.getElementById(sourceInputId);
+        const dataSource = sourceInput ? sourceInput.value.trim() : '';
+        
         view.toSVG()
             .then(svg => {
+                // Add attribution text to SVG
+                const parser = new DOMParser();
+                const svgDoc = parser.parseFromString(svg, 'image/svg+xml');
+                const svgElement = svgDoc.documentElement;
+                
+                // Get SVG dimensions
+                const width = parseFloat(svgElement.getAttribute('width') || 500);
+                const height = parseFloat(svgElement.getAttribute('height') || 400);
+                
+                // Create attribution text element
+                const attribution = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'text');
+                attribution.setAttribute('x', width / 2);
+                attribution.setAttribute('y', height - 10);
+                attribution.setAttribute('text-anchor', 'middle');
+                attribution.setAttribute('font-family', 'sans-serif');
+                attribution.setAttribute('font-size', '11');
+                attribution.setAttribute('fill', '#666');
+                
+                // Set attribution text
+                const sourceText = dataSource ? dataSource : 'Your Data Source';
+                attribution.textContent = `Created with Pet License Explorer | ${sourceText}`;
+                
+                // Append to SVG
+                svgElement.appendChild(attribution);
+                
+                // Serialize back to string
+                const serializer = new XMLSerializer();
+                const modifiedSvg = serializer.serializeToString(svgDoc);
+                
                 // Create blob and download
-                const blob = new Blob([svg], { type: 'image/svg+xml' });
+                const blob = new Blob([modifiedSvg], { type: 'image/svg+xml' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
