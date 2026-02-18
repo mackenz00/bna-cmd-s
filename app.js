@@ -1,7 +1,12 @@
 // app.js - Main application logic for Pet License Explorer
 
-// Global variable to store parsed data
+// Global (at the top so it's available everwhere in the file) 
+// variable to store parsed data
 let petData = [];
+let zipLookup = {};
+// just like petData holds all the CSV rows so any function 
+// can access them, zipLookup will hold the pre-processed zip code
+// table so the search funcation can reach it
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,6 +20,7 @@ function initializeApp() {
     const fileInput = document.getElementById('file-input');
     const tryAgainButton = document.getElementById('try-again-button');
     const demoDataButton = document.getElementById('demo-data-button');
+    const zipSearchButton = document.getElementById('zip-search-button');
     
     // Set up event listeners
     if (demoButton) {
@@ -40,6 +46,10 @@ function initializeApp() {
     
     if (demoDataButton) {
         demoDataButton.addEventListener('click', loadSeattleData);
+    }
+
+    if (zipSearchButton) {
+    zipSearchButton.addEventListener('click', handleZipSearch);
     }
 }
 
@@ -152,6 +162,11 @@ function validateAndProcessData(data) {
     
     // Store the data globally
     petData = data;
+    zipLookup = buildZipLookup(petData);
+    // right after CSV is parsed and stored,
+    // process it into a zip lookup table
+    // this way, the lookup is built and ready
+    // once the loading screen finishes
     
     // Simulate processing time (remove in production if you want instant results)
     setTimeout(() => {
@@ -217,4 +232,36 @@ function hideAllScreens() {
 // Export data for use in other modules
 function getPetData() {
     return petData;
+}
+
+function handleZipSearch() {
+    const input = document.getElementById('zip-input');
+    const zip = input.value.trim();
+    
+    if (!isValidZipCode(zip)) {
+        document.getElementById('zip-results').innerHTML = '<p class="zip-error">Please enter a valid 5-digit ZIP code.</p>';
+        return;
+    }
+    
+    const summary = getZipSummary(zipLookup, zip);
+    
+    if (!summary) {
+        document.getElementById('zip-results').innerHTML = '<p class="zip-error">No data found for ZIP code ' + zip + '.</p>';
+        return;
+    }
+    
+    displayZipResults(summary);
+}
+
+function displayZipResults(summary) {
+    const resultsDiv = document.getElementById('zip-results');
+    
+    resultsDiv.innerHTML = `
+        <div id="zip-results-card">
+            <h3>ZIP code ${summary.zip}</h3>
+            <p>${summary.total.toLocaleString()} total licensed pets</p>
+            <p>${summary.dogs.toLocaleString()} dogs (${summary.dogPercent}%) · ${summary.cats.toLocaleString()} cats (${summary.catPercent}%)</p>
+            <p>Top dog breeds: ${summary.topBreeds.map(b => b.name).join(' · ')}</p>
+        </div>
+    `;
 }
