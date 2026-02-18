@@ -103,6 +103,8 @@ header p {
 /* UPLOAD SECTION */
 /* ==================== */
 
+/* TODO create new class for upload container and */
+
 #landing-screen {
   background-color: var(--white);
   max-width: 600px;
@@ -623,9 +625,5 @@ footer a:hover {
     width: 100%;
   }
   
-  #landing-screen,
-  #loading-screen,
-  #error-screen {
-    margin: var(--spacing-md);
-  }
 }
+
