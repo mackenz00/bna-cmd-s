@@ -9,7 +9,6 @@ function generateVisualizations() {
         return;
     }
     
-    // Generate each visualization
     generateTopDogNames(data);
     generateTopCatNames(data);
     generateTopDogBreeds(data);
@@ -22,41 +21,22 @@ function generateTopDogNames(data) {
     
     const spec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-        title: {
-            text: 'Top 10 Dog Names',
-            fontSize: 16,
-            font: 'sans-serif',
-            anchor: 'start'
-        },
-        width: 400,
+        width: 'container',
         height: 350,
-        padding: { top: 20, bottom: 60, left: 10, right: 10 },
-        data: {
-            values: topNames
-        },
-        mark: {
-            type: 'bar',
-            color: '#5B9BD5'
-        },
+        autosize: { type: 'fit', contains: 'padding' },
+        data: { values: topNames },
+        mark: { type: 'bar', color: '#5B9BD5' },
         encoding: {
             y: {
                 field: 'name',
                 type: 'nominal',
                 sort: '-x',
-                axis: { 
-                    title: 'Dog Name',
-                    labelFontSize: 11,
-                    titleFontSize: 12
-                }
+                axis: { title: null, labelFontSize: 11 }
             },
             x: {
                 field: 'count',
                 type: 'quantitative',
-                axis: { 
-                    title: 'Number of Dogs',
-                    labelFontSize: 11,
-                    titleFontSize: 12
-                }
+                axis: { title: 'Number of Dogs', labelFontSize: 11, titleFontSize: 12 }
             },
             tooltip: [
                 { field: 'name', type: 'nominal', title: 'Name' },
@@ -78,41 +58,22 @@ function generateTopCatNames(data) {
     
     const spec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-        title: {
-            text: 'Top 10 Cat Names',
-            fontSize: 16,
-            font: 'sans-serif',
-            anchor: 'start'
-        },
-        width: 400,
+        width: 'container',
         height: 350,
-        padding: { top: 20, bottom: 60, left: 10, right: 10 },
-        data: {
-            values: topNames
-        },
-        mark: {
-            type: 'bar',
-            color: '#E06666'
-        },
+        autosize: { type: 'fit', contains: 'padding' },
+        data: { values: topNames },
+        mark: { type: 'bar', color: '#E06666' },
         encoding: {
             y: {
                 field: 'name',
                 type: 'nominal',
                 sort: '-x',
-                axis: { 
-                    title: 'Cat Name',
-                    labelFontSize: 11,
-                    titleFontSize: 12
-                }
+                axis: { title: null, labelFontSize: 11 }
             },
             x: {
                 field: 'count',
                 type: 'quantitative',
-                axis: { 
-                    title: 'Number of Cats',
-                    labelFontSize: 11,
-                    titleFontSize: 12
-                }
+                axis: { title: 'Number of Cats', labelFontSize: 11, titleFontSize: 12 }
             },
             tooltip: [
                 { field: 'name', type: 'nominal', title: 'Name' },
@@ -134,41 +95,22 @@ function generateTopDogBreeds(data) {
     
     const spec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-        title: {
-            text: 'Top 10 Dog Breeds',
-            fontSize: 16,
-            font: 'sans-serif',
-            anchor: 'start'
-        },
-        width: 400,
+        width: 'container',
         height: 350,
-        padding: { top: 20, bottom: 60, left: 10, right: 10 },
-        data: {
-            values: topBreeds
-        },
-        mark: {
-            type: 'bar',
-            color: '#F4B183'
-        },
+        autosize: { type: 'fit', contains: 'padding' },
+        data: { values: topBreeds },
+        mark: { type: 'bar', color: '#F4B183' },
         encoding: {
             y: {
                 field: 'name',
                 type: 'nominal',
                 sort: '-x',
-                axis: { 
-                    title: 'Breed',
-                    labelFontSize: 11,
-                    titleFontSize: 12
-                }
+                axis: { title: null, labelFontSize: 11 }
             },
             x: {
                 field: 'count',
                 type: 'quantitative',
-                axis: { 
-                    title: 'Number of Dogs',
-                    labelFontSize: 11,
-                    titleFontSize: 12
-                }
+                axis: { title: 'Number of Dogs', labelFontSize: 11, titleFontSize: 12 }
             },
             tooltip: [
                 { field: 'name', type: 'nominal', title: 'Breed' },
@@ -195,28 +137,13 @@ function generateCatsVsDogs(data) {
     
     const spec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-        title: {
-            text: 'Cats vs Dogs',
-            fontSize: 16,
-            font: 'sans-serif',
-            anchor: 'start'
-        },
-        width: 350,
+        width: 'container',
         height: 350,
-        padding: { top: 20, bottom: 60, left: 10, right: 10 },
-        data: {
-            values: chartData
-        },
-        mark: {
-            type: 'arc',
-            innerRadius: 80,
-            outerRadius: 120
-        },
+        autosize: { type: 'fit', contains: 'padding' },
+        data: { values: chartData },
+        mark: { type: 'arc', innerRadius: 80, outerRadius: 140 },
         encoding: {
-            theta: {
-                field: 'count',
-                type: 'quantitative'
-            },
+            theta: { field: 'count', type: 'quantitative' },
             color: {
                 field: 'category',
                 type: 'nominal',
@@ -224,11 +151,7 @@ function generateCatsVsDogs(data) {
                     domain: ['Dogs', 'Cats'],
                     range: ['#3185fc', '#e84855']
                 },
-                legend: { 
-                    title: 'Species',
-                    titleFontSize: 12,
-                    labelFontSize: 11
-                }
+                legend: { title: 'Species', titleFontSize: 12, labelFontSize: 11 }
             },
             tooltip: [
                 { field: 'category', type: 'nominal', title: 'Species' },
@@ -242,7 +165,6 @@ function generateCatsVsDogs(data) {
         .then(result => {
             setupDownloadButton('cats-dogs-download', result.view, 'cats-vs-dogs.svg');
             
-            // Update text display if you have percentage displays
             const dogsPercentage = document.getElementById('dogs-percentage');
             const catsPercentage = document.getElementById('cats-percentage');
             if (dogsPercentage) dogsPercentage.textContent = `${speciesData.dogs.percentage}%`;
@@ -257,48 +179,39 @@ function setupDownloadButton(buttonId, view, filename) {
     if (!button) return;
     
     button.addEventListener('click', function() {
-        // Get the corresponding source input
         const sourceInputId = buttonId.replace('-download', '-source');
         const sourceInput = document.getElementById(sourceInputId);
         const dataSource = sourceInput ? sourceInput.value.trim() : '';
         
         view.toSVG()
             .then(svg => {
-                // Add attribution text to SVG
                 const parser = new DOMParser();
                 const svgDoc = parser.parseFromString(svg, 'image/svg+xml');
                 const svgElement = svgDoc.documentElement;
                 
-                // Get SVG dimensions
                 const width = parseFloat(svgElement.getAttribute('width') || 500);
                 const height = parseFloat(svgElement.getAttribute('height') || 400);
                 
-                // Increase SVG height to make room for attribution
                 const newHeight = height + 30;
                 svgElement.setAttribute('height', newHeight);
                 svgElement.setAttribute('viewBox', `0 0 ${width} ${newHeight}`);
                 
-                // Create attribution text element
                 const attribution = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'text');
                 attribution.setAttribute('x', width / 2);
-                attribution.setAttribute('y', height + 20); // Position below the chart
+                attribution.setAttribute('y', height + 20);
                 attribution.setAttribute('text-anchor', 'middle');
                 attribution.setAttribute('font-family', 'sans-serif');
                 attribution.setAttribute('font-size', '11');
                 attribution.setAttribute('fill', '#666');
                 
-                // Set attribution text
                 const sourceText = dataSource ? dataSource : 'Your Data Source';
                 attribution.textContent = `Created with Pet License Explorer | ${sourceText}`;
                 
-                // Append to SVG
                 svgElement.appendChild(attribution);
                 
-                // Serialize back to string
                 const serializer = new XMLSerializer();
                 const modifiedSvg = serializer.serializeToString(svgDoc);
                 
-                // Create blob and download
                 const blob = new Blob([modifiedSvg], { type: 'image/svg+xml' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -324,10 +237,8 @@ function generateStoryIdeas() {
     const container = document.getElementById('story-ideas-container');
     if (!container) return;
     
-    // Clear existing content
     container.innerHTML = '';
     
-    // Create a card for each trend
     trends.forEach(trend => {
         const card = createStoryCard(trend);
         container.appendChild(card);
@@ -343,13 +254,18 @@ function createStoryCard(trend) {
         <div class="story-icon">${trend.icon}</div>
         <div class="story-content">
             <div class="story-type">${trend.type}</div>
-            <h3 class="story-headline">${trend.headline}</h3>
-            <p class="story-detail">${trend.detail}</p>
+            <h3 class="story-headline">${escapeHtml(trend.headline)}</h3>
+            <p class="story-detail">${escapeHtml(trend.detail)}</p>
         </div>
-        <button class="copy-button" onclick="copyStoryHeadline(this, '${escapeHtml(trend.headline)}')">
+        <button class="copy-button" data-headline="${escapeHtml(trend.headline)}">
             Copy
         </button>
     `;
+    
+    const copyBtn = card.querySelector('.copy-button');
+    copyBtn.addEventListener('click', function() {
+        copyStoryHeadline(this, this.dataset.headline);
+    });
     
     return card;
 }
@@ -358,7 +274,6 @@ function createStoryCard(trend) {
 function copyStoryHeadline(button, headline) {
     navigator.clipboard.writeText(headline)
         .then(() => {
-            // Visual feedback
             const originalText = button.textContent;
             button.textContent = '✓ Copied';
             button.classList.add('copied');
@@ -374,7 +289,7 @@ function copyStoryHeadline(button, headline) {
         });
 }
 
-// Escape HTML to prevent XSS
+// Escape HTML special characters to prevent XSS when inserting into innerHTML
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
