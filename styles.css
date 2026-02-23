@@ -625,6 +625,14 @@ footer a:hover {
   
 }
 
+/* Making Data Commons credit attribution font smaller */
+
+.source-credit {
+  font-size: 0.8em;
+  color: #888;
+  margin-top: 8px;
+}
+
 /* ==================== */
 /* ZIP CODE SEARCH */
 /* ==================== */

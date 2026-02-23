@@ -364,3 +364,40 @@ function getZipSummary(zipLookup, zip) {
         trend
     };
 }
+
+async function fetchDemographicData(zipCode) {
+  const variables = [
+    'Count_Person',
+    'Median_Income_Person', 
+    'Median_Age_Person'
+  ];
+  
+  const variableParams = variables.map(v => `variable.dcids=${v}`).join('&');
+  const url = `https://api.datacommons.org/v2/observation?key=${DC_API_KEY}&entity.dcids=zip/${zipCode}&select=entity&select=variable&select=value&select=date&${variableParams}`;
+  
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      console.error('DataCommons API error:', response.status);
+      return null;
+    }
+    
+    const data = await response.json();
+    const results = {};
+    
+    for (const variable of variables) {
+      const entityData = data.byVariable[variable]?.byEntity[`zip/${zipCode}`];
+      if (entityData?.orderedFacets?.length > 0) {
+        const observations = entityData.orderedFacets[0].observations;
+        const latest = observations[observations.length - 1];
+        results[variable] = { value: latest.value, date: latest.date };
+      }
+    }
+    
+    return results;
+  } catch (error) {
+    console.error('Failed to fetch demographic data:', error);
+    return null;
+  }
+}

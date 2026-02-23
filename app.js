@@ -53,6 +53,15 @@ function initializeApp() {
     }
 }
 
+const zipInput = document.getElementById('zip-input');
+if (zipInput) {
+    zipInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            handleZipSearch();
+        }
+    });
+}
+
 // Load Seattle demo data
 function loadSeattleData() {
     showLoadingScreen();
@@ -235,22 +244,22 @@ function getPetData() {
 }
 
 function handleZipSearch() {
-    const input = document.getElementById('zip-input');
-    const zip = input.value.trim();
-    
-    if (!isValidZipCode(zip)) {
-        document.getElementById('zip-results').innerHTML = '<p class="zip-error">Please enter a valid 5-digit ZIP code.</p>';
-        return;
-    }
-    
-    const summary = getZipSummary(zipLookup, zip);
-    
-    if (!summary) {
-        document.getElementById('zip-results').innerHTML = '<p class="zip-error">No data found for ZIP code ' + zip + '.</p>';
-        return;
-    }
-    
-    displayZipResults(summary);
+  const input = document.getElementById('zip-input');
+  const zip = input.value.trim();
+  if (!isValidZipCode(zip)) {
+    document.getElementById('zip-results').innerHTML = '<p class="zip-error">Please enter a valid 5-digit ZIP code.</p>';
+    return;
+  }
+  const summary = getZipSummary(zipLookup, zip);
+  if (!summary) {
+    document.getElementById('zip-results').innerHTML = '<p class="zip-error">No data found for ZIP code ' + zip + '.</p>';
+    return;
+  }
+  displayZipResults(summary);
+  
+  fetchDemographicData(zip).then(demographics => {
+    displayDemographicData(demographics, zip);
+});
 }
 
 function displayZipResults(summary) {
@@ -264,4 +273,38 @@ function displayZipResults(summary) {
             <p>Top dog breeds: ${summary.topBreeds.map(b => b.name).join(' · ')}</p>
         </div>
     `;
+}
+
+function displayDemographicData(demographics, zip) {
+  const card = document.getElementById('zip-results-card');
+  if (!card) return;
+  
+  const section = document.createElement('div');
+  section.id = 'demographic-data';
+  
+  if (!demographics || !demographics.Count_Person) {
+    section.innerHTML = `
+      <hr>
+      <p class="source-credit">Community context unavailable for this ZIP code.</p>
+    `;
+    card.appendChild(section);
+    return;
+  }
+  
+  let details = `<p>Population: ${demographics.Count_Person.value.toLocaleString()}</p>`;
+  
+  if (demographics.Median_Income_Person) {
+    details += `<p>Median income: $${demographics.Median_Income_Person.value.toLocaleString()}</p>`;
+  }
+  if (demographics.Median_Age_Person) {
+    details += `<p>Median age: ${demographics.Median_Age_Person.value} years</p>`;
+  }
+  
+  section.innerHTML = `
+    <hr>
+    <p><strong>Community context</strong> (${demographics.Count_Person.date} Census)</p>
+    ${details}
+    <p class="source-credit">Source: <a href="https://datacommons.org/place/zip/${zip}" target="_blank">Data Commons</a> (U.S. Census Bureau)</p>
+  `;
+  card.appendChild(section);
 }
