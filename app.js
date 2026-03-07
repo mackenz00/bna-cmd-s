@@ -292,7 +292,7 @@ function displayDemographicData(demographics, national, zip) {
   let details = `<p>Population: ${demographics.Count_Person.value.toLocaleString()}</p>`;
 
   if (demographics.Median_Income_Person) {
-    let incomeLine = `<p>Median income: $${demographics.Median_Income_Person.value.toLocaleString()}`;
+let incomeLine = `<p>Median individual income: $${demographics.Median_Income_Person.value.toLocaleString()}`;
     if (national?.Median_Income_Person) {
       incomeLine += ` <span class="national-compare">(U.S. average: $${national.Median_Income_Person.value.toLocaleString()})</span>`;
     }
