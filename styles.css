@@ -106,17 +106,23 @@ header p {
 /* TODO create new class for upload container and */
 
 #landing-screen {
-  background-color: var(--white);
-  max-width: 600px;
-  margin: var(--spacing-lg) auto; /* horizontal centering w/ auto margins */
-  padding: var(--spacing-lg);
-  border-radius: 8px; /* rounded corners */
-  box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1);
+  background-color: var(--main-bg);
+  max-width: 900px;
+  margin: var(--spacing-lg) auto; /* horizontal centering w/ auto margins */;
 }
 
 .upload-container h2 {
   text-align: center;
   margin-bottom: var(--spacing-md);
+}
+
+.upload-container {
+    background-color: var(--white);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1);
 }
 
 /* Hide the actual file input */
@@ -586,6 +592,59 @@ footer a:hover {
 }
 
 /* ==================== */
+/* PREVIEW SECTION */
+/* ==================== */
+
+.preview-section {
+    max-width: 900px;
+    margin: var(--spacing-lg) auto;
+    padding: 0 var(--spacing-md);
+    text-align: center;
+}
+
+.preview-section h2 {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-dark);
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.preview-card {
+    background-color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.preview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(64, 63, 76, 0.15);
+}
+
+.preview-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.preview-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.preview-card p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* ==================== */
 /* RESPONSIVE DESIGN */
 /* ==================== */
 
@@ -622,6 +681,10 @@ footer a:hover {
     margin-top: 1rem;
     width: 100%;
   }
+
+  .preview-grid {
+        grid-template-columns: 1fr;
+    }
   
 }
 
