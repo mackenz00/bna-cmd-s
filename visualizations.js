@@ -206,8 +206,12 @@ function setupDownloadButton(buttonId, view, filename) {
                 
                 const sourceText = dataSource ? dataSource : 'Your Data Source';
                 attribution.textContent = `Created with Pet License Explorer | ${sourceText}`;
-                
-                svgElement.appendChild(attribution);
+
+                const link = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'a');
+                link.setAttribute('href', 'https://mackenz00.github.io/bna-cmd-s/');
+                link.setAttribute('target', '_blank');
+                link.appendChild(attribution);
+                svgElement.appendChild(link);
                 
                 const serializer = new XMLSerializer();
                 const modifiedSvg = serializer.serializeToString(svgDoc);
