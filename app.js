@@ -257,9 +257,9 @@ function handleZipSearch() {
   }
   displayZipResults(summary);
   
-  fetchDemographicData(zip).then(demographics => {
-    displayDemographicData(demographics, zip);
-});
+  Promise.all([fetchDemographicData(zip), fetchNationalData()]).then(([demographics, national]) => {
+    displayDemographicData(demographics, national, zip);
+  });
 }
 
 function displayZipResults(summary) {
@@ -275,13 +275,11 @@ function displayZipResults(summary) {
     `;
 }
 
-function displayDemographicData(demographics, zip) {
+function displayDemographicData(demographics, national, zip) {
   const card = document.getElementById('zip-results-card');
   if (!card) return;
-  
   const section = document.createElement('div');
   section.id = 'demographic-data';
-  
   if (!demographics || !demographics.Count_Person) {
     section.innerHTML = `
       <hr>
@@ -290,16 +288,27 @@ function displayDemographicData(demographics, zip) {
     card.appendChild(section);
     return;
   }
-  
+
   let details = `<p>Population: ${demographics.Count_Person.value.toLocaleString()}</p>`;
-  
+
   if (demographics.Median_Income_Person) {
-    details += `<p>Median income: $${demographics.Median_Income_Person.value.toLocaleString()}</p>`;
+    let incomeLine = `<p>Median income: $${demographics.Median_Income_Person.value.toLocaleString()}`;
+    if (national?.Median_Income_Person) {
+      incomeLine += ` <span class="national-compare">(U.S. average: $${national.Median_Income_Person.value.toLocaleString()})</span>`;
+    }
+    incomeLine += `</p>`;
+    details += incomeLine;
   }
+
   if (demographics.Median_Age_Person) {
-    details += `<p>Median age: ${demographics.Median_Age_Person.value} years</p>`;
+    let ageLine = `<p>Median age: ${demographics.Median_Age_Person.value} years`;
+    if (national?.Median_Age_Person) {
+      ageLine += ` <span class="national-compare">(U.S. average: ${national.Median_Age_Person.value} years)</span>`;
+    }
+    ageLine += `</p>`;
+    details += ageLine;
   }
-  
+
   section.innerHTML = `
     <hr>
     <p><strong>Community context</strong> (${demographics.Count_Person.date} Census)</p>
