@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Pet License Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* About page specific styles */
+        .about-container {
+            max-width: 800px;
+            margin: var(--spacing-lg) auto;
+            padding: var(--spacing-md);
+        }
+
+        .about-section {
+            background-color: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(64, 63, 76, 0.1);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .about-section h2 {
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.5rem;
+        }
+
+        .about-section p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .about-section a {
+            color: var(--blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .about-section a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: var(--spacing-sm);
+        }
+
+        .tech-tag {
+            background-color: var(--blue-light);
+            color: var(--text-dark);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .bio-links {
+            margin-top: var(--spacing-sm);
+        }
+
+        .bio-links a {
+            display: inline-block;
+            margin-right: 1.5rem;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: var(--spacing-md);
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About Pet License Explorer</h1>
+        <p>Turning public pet license data into story-ready insights for journalists.</p>
+    </header>
+
+    <div class="about-container">
+
+        <a href="index.html" class="back-link">&larr; Back to Explorer</a>
+
+        <div class="about-section">
+            <h2>What is this tool?</h2>
+            <p>Pet License Explorer helps journalists quickly analyze public pet licensing data. Upload a CSV of pet license records and the tool generates visualizations, story ideas, and neighborhood-level demographic context — all designed to surface newsworthy patterns without requiring any coding or data analysis experience.</p>
+            <p>Search any ZIP code to see local pet registration breakdowns alongside U.S. Census demographic data, giving reporters the community context they need to tell richer stories.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>How it works</h2>
+            <p>Upload a CSV file containing pet license records with columns for license date, pet name, species, breed, and ZIP code. The tool parses the data in your browser, generates interactive charts, identifies trending patterns, and suggests data-driven story angles — all without sending your data to any server.</p>
+            <p>Demographic context for ZIP code searches is provided by the <a href="https://datacommons.org/" target="_blank">Data Commons API</a>, sourcing data from the U.S. Census Bureau's American Community Survey. The demo uses <a href="https://data.seattle.gov/" target="_blank">Seattle's open pet license data</a>.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Built with</h2>
+            <div class="tech-tags">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Vega-Lite</span>
+                <span class="tech-tag">PapaParse</span>
+                <span class="tech-tag">Data Commons API</span>
+                <span class="tech-tag">Google Cloud Functions</span>
+                <span class="tech-tag">GitHub Pages</span>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>About the creator</h2>
+            <p>Kenzie Possee is a graduate journalism student at Stanford University with a focus on data journalism and investigative reporting. This project was built for Building News Apps (winter 2026) with coding assistance from <a href="https://claude.ai" target="_blank">Claude</a> by Anthropic.</p>
+            <div class="bio-links">
+                <a href="https://kenziepossee.com" target="_blank">Website</a>
+                <a href="https://www.linkedin.com/in/kenziepossee/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Built by Kenzie Possee with special thanks to Marnette Federis | <a href="https://github.com/mackenz00/bna-cmd-s">View on GitHub</a></p>
+    </footer>
+</body>
+</html>
