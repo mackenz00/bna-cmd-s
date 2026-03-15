@@ -66,6 +66,10 @@ To test, reload the page in your browser after making changes. You can download 
 2. Use descriptive commit messages 
 3. Open a pull request with a summary of what you changed and why
 
+One note to consider before submitting any changes: This is a journalism tool. 
+
+Any auto-generated text — like story ideas — must not fabricate statistics or imply claims the data doesn't support. If a number appears in the UI, it should trace back to something in the uploaded CSV or the DataCommons API. When in doubt, leave it out.
+
 ## Data sources and attribution
 
 - Pet license data: [Seattle Open Data](https://data.seattle.gov/)
