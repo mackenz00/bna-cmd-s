@@ -39,6 +39,33 @@ Upload a CSV file with the following columns (column names must match exactly):
 - **API proxy:** Google Cloud Functions
 - **Hosting:** GitHub Pages
 
+## Contributing
+
+Contributions are welcome! This is a no-build-step project — there's no bundler, framework or local server required.
+
+### Getting Started
+
+1. Fork and clone the repo
+2. Open `index.html` directly in your browser
+3. Keep your browser console open for debugging
+
+### Project Structure
+
+- `app.js` — Main application logic and UI event handling
+- `dataProcessor.js` — CSV parsing and demographic lookups via DataCommons API
+- `visualizations.js` — Vega-Lite chart specs and rendering
+- `utilities.js` — Helper functions
+
+### Testing Your Changes
+
+To test, reload the page in your browser after making changes. You can download a sample pet license CSV from [Seattle Open Data](https://data.seattle.gov/browse?q=pet+licensing&sortBy=relevance&page=1&pageSize=20) to test uploads.
+
+### Submitting Changes
+
+1. Create a branch off `main`
+2. Use descriptive commit messages 
+3. Open a pull request with a summary of what you changed and why
+
 ## Data sources and attribution
 
 - Pet license data: [Seattle Open Data](https://data.seattle.gov/)
