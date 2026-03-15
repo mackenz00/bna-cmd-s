@@ -241,7 +241,7 @@ function findTrends(data) {
         trends.push({
             type: 'NAME DIVERSITY',
             icon: '🐾',
-            headline: `Seattle dog owners registered ${uniqueDogNames.size.toLocaleString()} unique names across ${dogs.length.toLocaleString()} licensed dogs`,
+            headline: `Dog owners registered ${uniqueDogNames.size.toLocaleString()} unique names across ${dogs.length.toLocaleString()} licensed dogs`,
             detail: `That's roughly one unique name for every ${dogsPerName} dogs.`,
             color: 'purple'
         });
