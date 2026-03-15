@@ -60,9 +60,20 @@
             <label for="file-input" class="upload-button" id="upload-area">Choose a CSV file or drag it here.</label>
             
             <!-- Requirements text -->
-            <p class="requirements">
-                Many cities in the U.S. publish pet license data or make it available via public records request. To work with this tool, your file needs these columns: License Issue Date, Animal's Name, Species, Primary Breed, Secondary Breed and ZIP Code. Don't worry about column order — we'll figure it out. Charts may be limited if key fields are blank.
-            </p>
+            <div class="requirements">
+            <p>Many cities in the U.S. publish pet license data or make it available via public records request. Your CSV must include these column headers, written exactly as shown:</p>
+            <table class="column-table">
+                <tr>
+                    <td>License Issue Date</td>
+                    <td>Animal's Name</td>
+                    <td>Species</td>
+                    <td>Primary Breed</td>
+                    <td>Secondary Breed</td>
+                    <td>ZIP Code</td>
+                </tr>
+            </table>
+            <p>Column order doesn't matter — we'll figure it out. Charts may be limited if key fields are blank.</p>
+        </div>
         </div>
 
     </section>
